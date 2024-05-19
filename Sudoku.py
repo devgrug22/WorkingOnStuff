@@ -39,7 +39,7 @@ def find_empty(board):
                 return (row, col)
     
     return None
-
+# Checking if the given position is a win or not
 def check_if_won(board, number, position):
     # checking each row in each column for matching numbers
     for row in range(len(board[0])):
@@ -61,7 +61,7 @@ def check_if_won(board, number, position):
                 return False
     
     return True
-
+# Looking and retrieving a random location in board
 def random_location_on_board(board):
     empty_space = [(i, j) for i in range(9) for j in range(9) if board[i][j] == 0]
     if not empty_space:
