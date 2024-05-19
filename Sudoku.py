@@ -69,7 +69,7 @@ def random_location_on_board(board):
     else:
         random_space = random.choice(empty_space)
     return random_space
-
+# inputing a random digit into the board x's times based on difficulty level
 def random_digit(board, difficulty):
     count = 0
     while count < difficulty:
@@ -79,7 +79,7 @@ def random_digit(board, difficulty):
         if check_if_won(board, digit, (row, col)) == True:
             pass
         count += 1
-    
+# Using backtracking algorythm to check if the latest move is a win or not    
 def solved(board):
     print(board)
     check_if_empty = find_empty(board)
@@ -87,7 +87,7 @@ def solved(board):
         return True
     else:
         row, col = check_if_empty
-
+    
     for i in range(1, 10):
         if check_if_won(board, i, (row, col)):
             board[row][col] = i
@@ -98,6 +98,7 @@ def solved(board):
             board[row][col] = 0
     
     return False
+# checking the chosen difficulty
 def diff(difficulty=None):
     
     if difficulty.lower() == 'e':
@@ -108,7 +109,7 @@ def diff(difficulty=None):
         amount = random.randint(25, 30)
     
     return amount
-
+# reseting the board back to 0
 def new_board(board):
 
     for i in range(len(board)):
@@ -116,8 +117,9 @@ def new_board(board):
                 if board[i][j] != 0:
                     board[i][j] = 0
     return None
-
+# runing the game logic
 def game(board):
+    # asking for user input, choosing the difficulty
     difficulty_message = print('Please select difficulty: "e" for easy, "m" for medium, "h" for hard')
     difficulty_input = input(": ")
     board_print(board)
