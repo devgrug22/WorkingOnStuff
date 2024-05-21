@@ -1,3 +1,7 @@
+### Not always works as inteded, looking for a solution, sticks in a forewell loop###
+
+
+
 import random
 import time
 # creating the sudoku board
