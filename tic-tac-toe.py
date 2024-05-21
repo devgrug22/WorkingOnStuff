@@ -121,7 +121,7 @@ def play():
     versus = input('if you would to play against computer player, press c, if against another player press p: ')
     while ' ' in board:
         
-
+        #player vs player
         if versus.lower() == 'p':
 
             if player_1:
@@ -169,7 +169,8 @@ def play():
                         print_board(board)
                         print('Congratulations! player1 you have won!')
                         break
-                
+
+                #Vs computer
                 if computer:
                     print('Computer turn')
                     letter = computer
@@ -183,8 +184,9 @@ def play():
                         print('Computer player has won the game!')
                         break
 
-#Minimax is not working correctly, working on possible solutions
+
             break                
 if __name__ == '__main__':
     
     play()
+#Minimax is not working correctly, working on possible solutions
