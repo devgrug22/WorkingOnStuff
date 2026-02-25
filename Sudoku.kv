@@ -1,0 +1,236 @@
+#:kivy 2.3.1
+#:set s (1)
+#:set t (2)
+#:import Factory kivy.factory.Factory
+
+<MyPopup@Popup>:
+    
+    size_hint: .5, .5
+    title_align: 'center'
+    title: 'reset selection'
+
+    BoxLayout:
+    
+        RelativeLayout:
+
+            Button:
+                text: 'Create new board'
+                
+                size_hint: .5, .9
+                pos_hint: {'x': 0, 'y': .1}
+                on_press: app.root.reset_board()
+                on_release: root.dismiss()
+                on_release: app.root.board_creation()
+                on_release: app.root.assign_to_grid()
+                on_release: app.root.time = 0
+
+            Button:
+                text: 'Reset current board'
+                size_hint: .5, .9
+                pos_hint: {'x': 0.5, 'y': .1}
+                on_release: app.root.copy_currenct_board()
+                on_release: root.dismiss()    
+                on_release: app.root.time = 0
+            Button:
+                text: 'Continue'
+                size_hint: 1, .1
+                on_release: root.dismiss()
+    
+
+<SudokuGame>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        id: whole_app
+        RelativeLayout:
+            size_hint: 1, 0.1
+
+            Label:
+                text: root.timer_input
+                pos_hint: {'x': .5, 'y': .5}
+                size_hint: .1, .1
+
+            Button:
+                
+                text: 'Solve'
+                pos_hint: {'x': 0, 'y':0}
+                size_hint: .1, 1
+                on_press: root.solve()
+
+                
+        BoxLayout:
+
+            StackLayout:
+                id: main_board
+
+                canvas.after:
+                    
+                    Color:
+                        rgb: 0, 0, 0
+
+                    Line:
+                        id: top_line
+                        points: (0, self.height, self.width, self.height)
+                        width: 3
+                    Line:
+                        id: bottom_line
+                        points: (self.width, 0, 0, 0)
+                        width: 3
+                    Line:
+                        id: left_side_line
+                        points: (0, self.height, 0, 0)
+                        width: 3
+                    Line:
+                        id: right_side_line
+                        points: (self.width, self.height, self.width, 0)
+                        width: 3
+                    Line:
+                        id: between_3-4rows_line
+                        points: (self.width / 3, 0, self.width / 3, self.height)
+                        width: 3
+                    Line:
+                        id: between_6-7rows_Line
+                        points: (self.width, self.height / 3, 0, self.height / 3)
+                        width: 3
+                    Line:
+                        id: betwee_3-4rows_line
+                        points: (self.width, self.height / 1.5, 0, self.height / 1.5)
+                        width: 3
+                    Line:
+                        id: Between_6-7cols_Line
+                        points: (self.width / 1.5, 0, self.width / 1.5, self.height)
+                        width: 3
+                    Color:
+                        rgba: 0, 0, 0, .5
+
+                    Line:
+                        id: between_1-2rows_line
+                        points: (self.width, self.height / 1.124, 0, self.height / 1.124)
+                        width: t
+                    Line:
+                        id: between_2-3rows_line
+                        points: (self.width, self.height / 1.283, 0, self.height / 1.283)
+                        width: t
+                    Line:
+                        id: between_4-5rows_line
+                        points: (self.width, self.height / 1.8, 0, self.height / 1.8)
+                        width: t
+                    Line:
+                        id: between_5-6rows_line
+                        points: (self.width, self.height / 2.25, 0, self.height / 2.25)
+                        width: t
+                    Line:
+                        id: between_7-8rows_line
+                        points: (self.width, self.height / 4.5, 0, self.height / 4.5)
+                        width: t
+                    Line:
+                        id: between_8-9rows_line
+                        points: (self.width, self.height / 9, 0, self.height / 9)
+                        width: t
+                                            
+                    Line:
+                        id: between_1-2cols_line
+                        points: (self.width / 9, self.height, self.width / 9, 0)
+                        width: t
+                    Line:
+                        id: between_2-3cols_line
+                        points: (self.width / 4.5, self.height , self.width / 4.5, 0)
+                        width: t
+                    Line:
+                        id: between_4-5cols_line
+                        points: (self.width / 2.25, self.height , self.width / 2.25, 0)
+                        width: t
+                    Line:
+                        id: between_5-6cols_line
+                        points: (self.width / 1.8, self.height , self.width / 1.8, 0)
+                        width: t
+                    Line:
+                        id: between_7-8cols_line
+                        points: (self.width / 1.285, self.height , self.width / 1.285, 0)
+                        width: t
+                    Line:
+                        id: between_8-9cols_line
+                        points: (self.width / 1.125, self.height , self.width / 1.125, 0)
+                        width: t
+
+
+                        
+                        
+                
+
+
+                
+            #RelativeLayout:
+                
+                
+                #canvas:
+                 #   Color:
+                  #      rgb: 1, 1, 1
+                   # Rectangle:
+                   #     size: self.size
+                    #    on_click: print(self.size)
+                    #Color:
+                     #   rgb: 0,0, 0
+                #on_parent:
+                    #for i in range(9): self.canvas.add(Line(points=))
+                                #Button:
+                    #text: 'random_board_to_check'
+                    #on_press: root.solve()
+                    #size_hint: None, None
+                    #pos_hint: {'x': 0, 'y': 0.4}
+
+            RelativeLayout:
+                id: rel_layout
+                size_hint: None, 1
+                Button:
+                    text: 'Start game'
+                    on_press: root.time_update_click()
+                    on_press: root.board_creation()
+                    on_press: root.assign_to_grid()
+                    size_hint: None, None
+                    pos_hint: {'x': 0, 'y': 0.0}
+                    on_press: root.time = 0
+
+                Button:
+                    text: 'reset'
+                    on_press: Factory.MyPopup().open()
+                    size_hint: None, None
+                    pos_hint: {'x': 0, 'y': 0.15}
+                StackLayout:
+
+                    pos_hint: {'x': 0, 'y': -.003}
+                    Button:
+                        id: easy_mode
+                        text: 'Easy'
+                        on_press: root.difficulty(self)
+                        on_press: root.Picking_random_board_from_json_and_selecting_difficulty()
+                        size_hint: None, None
+                        pos_hint: {'x': 0, 'y': 0.85}
+
+                    Button:
+                        id: Medium_mode
+                        on_press: root.difficulty(self)
+                        on_press: root.Picking_random_board_from_json_and_selecting_difficulty()
+                        text: 'Medium'
+                        size_hint: None, None
+                        pos_hint: {'x': 0, 'y': 0.7}
+
+                    Button:
+                        id: Hard_mode
+                        on_press: root.difficulty(self)
+                        on_press: root.Picking_random_board_from_json_and_selecting_difficulty()
+                        text: 'Hard'
+                        size_hint: None, None
+                        pos_hint: {'x': 0, 'y': 0.55}
+                
+                Button:
+                    text: 'if won'
+                    limit_render_to_text_bbox: True
+                    
+                    on_press: root.last_location()
+                    size_hint: None, None
+                    pos_hint: {'x': 0, 'y': 0.3}
+
+
+
+                    

@@ -1,0 +1,46 @@
+#:kivy 2.3.1
+
+#:import Factory kivy.factory.Factory
+<MyPopup@Popup>:
+    
+    size_hint: .6, .6
+    title_align: 'center'
+    title: 'reset selection'
+    
+    BoxLayout:
+        
+        Button:
+            id: vs_easy
+            text: 'Ai easy vs player'
+            on_press: app.root.face_off_choice(self)
+            
+            on_press: root.dismiss()
+            
+            text_size: 50, None
+        Button:
+            id: PVP
+            text: 'player vs player'
+            on_press: app.root.face_off_choice(self)
+            
+            on_press: root.dismiss()
+
+            text_size: 50, None
+        Button:
+            id: vs_hard_comp
+            text: 'Ai hard vs player'
+            on_press: app.root.face_off_choice(self)
+            
+            on_press: root.dismiss()
+            text_size: 50, None
+
+<TicTacToe>:
+
+
+    StackLayout:
+        id: tic_board
+
+    Button:
+        text: 'start game'
+        on_press: Factory.MyPopup().open()
+        size_hint: .3, 1
+        
